@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprende Digital — Cursos CESFAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul: #185FA5;
+  --azul-dark: #042C53;
+  --azul-light: #E6F1FB;
+  --verde: #1D9E75;
+  --verde-dark: #085041;
+  --verde-light: #E1F5EE;
+  --amarillo: #EF9F27;
+  --amarillo-light: #FAEEDA;
+  --coral: #D85A30;
+  --coral-light: #FAECE7;
+  --purp: #7F77DD;
+  --purp-light: #EEEDFE;
+  --gris: #2C2C2A;
+  --gris-m: #5F5E5A;
+  --gris-l: #B4B2A9;
+  --borde: #E0DFD8;
+  --fondo: #F8F7F3;
+  --blanco: #ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--fondo);color:var(--gris);min-height:100vh}
+
+/* NAV */
+nav{background:var(--blanco);border-bottom:1.5px solid var(--borde);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--azul-dark)}
+.nav-logo span{color:var(--azul)}
+.nav-right{display:flex;align-items:center;gap:.8rem}
+.nav-link{font-size:.85rem;color:var(--gris-m);cursor:pointer;background:none;border:none;font-family:inherit;padding:.3rem .5rem}
+.nav-link:hover{color:var(--azul)}
+.btn-nav{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:20px;font-size:.83rem;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-nav:hover{background:var(--azul-dark)}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{background:var(--azul-dark);color:#fff;padding:3.5rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-80px;width:340px;height:340px;background:var(--azul);opacity:.12;border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-60px;width:200px;height:200px;background:var(--verde);opacity:.1;border-radius:50%}
+.hero-badge{display:inline-block;background:rgba(239,159,39,.2);color:var(--amarillo);border:1px solid rgba(239,159,39,.35);font-size:.75rem;font-weight:600;padding:.35rem 1rem;border-radius:20px;margin-bottom:1.2rem;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,5vw,2.8rem);font-weight:800;line-height:1.15;max-width:680px;margin:0 auto .9rem}
+.hero h1 em{font-style:normal;color:var(--amarillo)}
+.hero p{color:#B5D4F4;font-size:1rem;max-width:500px;margin:0 auto 2rem;line-height:1.65}
+.hero-pills{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+.hero-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:.45rem 1rem;font-size:.82rem;color:#E6F1FB}
+
+/* CURSOS GRID */
+.wrap{max-width:940px;margin:0 auto;padding:2.5rem 1.5rem}
+.sec-head{margin-bottom:1.8rem}
+.sec-titulo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;color:var(--gris);margin-bottom:.3rem}
+.sec-sub{font-size:.9rem;color:var(--gris-m)}
+
+.cursos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.ccard{background:var(--blanco);border:1.5px solid var(--borde);border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.ccard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.09)}
+.ccard-top{padding:1.3rem 1.3rem .9rem;display:flex;gap:.9rem;align-items:flex-start}
+.ccard-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.ic-ia{background:var(--azul-light)}
+.ic-excel{background:var(--verde-light)}
+.ic-ppt{background:var(--coral-light)}
+.ic-dis{background:var(--purp-light)}
+.ccard-nombre{font-family:'Syne',sans-serif;font-weight:700;font-size:.98rem;margin-bottom:.2rem}
+.ccard-desc{font-size:.78rem;color:var(--gris-m);line-height:1.4}
+.ccard-caps{list-style:none;padding:0 1.3rem;display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.ccard-caps li{font-size:.8rem;color:var(--gris-m);display:flex;align-items:center;gap:.5rem;padding:.38rem .6rem;background:var(--fondo);border-radius:7px}
+.cnum{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;color:#fff}
+.cn-ia{background:var(--azul)}.cn-excel{background:var(--verde)}.cn-ppt{background:var(--coral)}.cn-dis{background:var(--purp)}
+.ccard-footer{padding:.9rem 1.3rem;border-top:1px solid var(--borde);display:flex;align-items:center;justify-content:space-between}
+.precio{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--azul-dark)}
+.precio small{display:block;font-family:'IBM Plex Sans',sans-serif;font-weight:400;font-size:.72rem;color:var(--gris-m);margin-top:-1px}
+.btn-ver{border:none;padding:.48rem 1.1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit}
+.bv-ia{background:var(--azul);color:#fff}.bv-ia:hover{background:var(--azul-dark)}
+.bv-excel{background:var(--verde);color:#fff}.bv-excel:hover{background:var(--verde-dark)}
+.bv-ppt{background:var(--coral);color:#fff}
+.bv-dis{background:var(--purp);color:#fff}
+
+/* CÓMO COMPRAR */
+.comprar-box{background:var(--blanco);border:1.5px solid var(--borde);border-radius:18px;padding:2rem;margin-bottom:2rem}
+.pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1.2rem}
+.paso{background:var(--fondo);border-radius:12px;padding:1.1rem}
+.paso-n{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--azul);line-height:1;margin-bottom:.3rem}
+.paso h4{font-size:.9rem;font-weight:600;margin-bottom:.25rem}
+.paso p{font-size:.78rem;color:var(--gris-m);line-height:1.5}
+.contacto-pill{margin-top:1.2rem;background:var(--azul-light);border-radius:12px;padding:1rem 1.2rem;text-align:center}
+.contacto-pill p{font-weight:600;color:var(--azul-dark);margin-bottom:.2rem;font-size:.9rem}
+.contacto-pill span{color:var(--azul);font-size:.88rem}
+.contacto-pill small{color:var(--gris-m);font-size:.75rem;display:block;margin-top:.2rem}
+
+/* ACCESO */
+.acceso-card{background:var(--blanco);border:1.5px solid var(--borde);border-radius:18px;padding:2rem;max-width:460px;margin:0 auto;text-align:center}
+.acc-icon{font-size:2.2rem;margin-bottom:.7rem}
+.acc-titulo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.4rem}
+.acc-desc{font-size:.88rem;color:var(--gris-m);margin-bottom:1.3rem;line-height:1.5}
+.acc-row{display:flex;gap:.5rem;margin-bottom:.8rem}
+.acc-row input{flex:1;padding:.65rem 1rem;border:1.5px solid var(--borde);border-radius:10px;font-size:.95rem;text-align:center;letter-spacing:.1em;text-transform:uppercase;font-family:inherit;outline:none}
+.acc-row input:focus{border-color:var(--azul)}
+.btn-entrar{background:var(--azul);color:#fff;border:none;padding:.65rem 1.3rem;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn-entrar:hover{background:var(--azul-dark)}
+.err-msg{color:#E24B4A;font-size:.82rem;display:none;margin-bottom:.5rem}
+.acc-hint{font-size:.78rem;color:var(--gris-m)}
+.acc-hint a{color:var(--azul);cursor:pointer;font-weight:500}
+
+/* ADMIN */
+.admin-login-box{background:var(--blanco);border:1.5px solid var(--borde);border-radius:16px;padding:1.8rem;max-width:360px;margin:0 auto;text-align:center}
+.admin-login-box h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:1rem;font-size:1.1rem}
+.admin-login-box input{width:100%;padding:.65rem 1rem;border:1.5px solid var(--borde);border-radius:10px;font-size:.9rem;margin-bottom:.8rem;font-family:inherit;outline:none}
+.admin-login-box input:focus{border-color:var(--azul)}
+.btn-admin-in{width:100%;background:var(--azul-dark);color:#fff;border:none;padding:.7rem;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit}
+.admin-panel{background:var(--azul-dark);color:#fff;border-radius:16px;padding:1.8rem;max-width:640px;margin:0 auto}
+.admin-panel h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:1rem}
+.codigos-lista{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem;max-height:260px;overflow-y:auto}
+.cod-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.45rem .8rem;display:flex;align-items:center;justify-content:space-between;font-size:.82rem}
+.cod-code{font-family:monospace;font-size:.95rem;font-weight:700;letter-spacing:.08em;color:var(--amarillo)}
+.cod-tipo{font-size:.72rem;opacity:.65;text-transform:uppercase}
+.badge-usado{background:rgba(226,75,74,.3);color:#F7C1C1;font-size:.7rem;padding:.18rem .55rem;border-radius:20px}
+.badge-disp{background:rgba(29,158,117,.3);color:#9FE1CB;font-size:.7rem;padding:.18rem .55rem;border-radius:20px}
+.admin-btns{display:flex;gap:.6rem;flex-wrap:wrap}
+.btn-adm{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);padding:.48rem 1rem;border-radius:8px;font-size:.8rem;cursor:pointer;font-family:inherit}
+.btn-adm:hover{background:rgba(255,255,255,.2)}
+.adm-msg{margin-top:.8rem;font-size:.82rem;color:var(--amarillo)}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}
+.modal-ov.open{display:flex}
+.modal{background:var(--blanco);border-radius:20px;max-width:720px;width:100%;margin:auto;overflow:hidden}
+.modal-hdr{padding:1.4rem 1.4rem .8rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.modal-hdr-l{display:flex;align-items:center;gap:.9rem}
+.modal-ico{width:48px;height:48px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.modal-titulo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem}
+.modal-sub{font-size:.8rem;color:var(--gris-m)}
+.modal-x{background:var(--fondo);border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-body{padding:0 1.4rem 1.4rem}
+.caps-preview{display:flex;flex-direction:column;gap:.7rem}
+.cap-prev{border:1.5px solid var(--borde);border-radius:11px;overflow:hidden}
+.cap-prev-hdr{padding:.75rem .9rem;display:flex;align-items:center;gap:.7rem;cursor:pointer;background:var(--fondo)}
+.cap-prev-hdr:hover{background:var(--azul-light)}
+.cap-prev.open .cap-prev-hdr{background:var(--azul-light)}
+.cap-nbadge{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;color:#fff}
+.cap-prev-tit{flex:1;font-weight:600;font-size:.85rem}
+.cap-prev-dur{font-size:.75rem;color:var(--gris-m);white-space:nowrap}
+.chev{font-size:.75rem;color:var(--gris-m);transition:transform .2s}
+.cap-prev.open .chev{transform:rotate(180deg)}
+.cap-prev-body{padding:0;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.cap-prev.open .cap-prev-body{max-height:400px;padding:.8rem .9rem}
+.cap-temas{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.cap-temas li{font-size:.82rem;color:var(--gris-m);display:flex;gap:.5rem}
+.cap-temas li::before{content:'→';font-weight:700;flex-shrink:0}
+.modal-cta{margin-top:1.3rem;background:var(--azul-light);border-radius:12px;padding:1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.modal-cta p{font-weight:600;color:var(--azul-dark);font-size:.88rem}
+.modal-cta small{display:block;color:var(--azul);font-size:.78rem;margin-top:.15rem;font-weight:400}
+.btn-cta{background:var(--azul);color:#fff;border:none;padding:.65rem 1.4rem;border-radius:20px;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap}
+
+/* VISTA CURSO */
+.curso-pg{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 3rem}
+.btn-volver{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1.5px solid var(--borde);padding:.45rem .9rem;border-radius:20px;font-size:.82rem;cursor:pointer;margin-bottom:1.3rem;font-family:inherit;color:var(--gris)}
+.btn-volver:hover{background:var(--fondo)}
+.curso-banner{color:#fff;padding:1.5rem;border-radius:16px;margin-bottom:1.3rem}
+.curso-banner-ico{font-size:2rem;margin-bottom:.4rem}
+.curso-banner h2{font-family:'Syne',sans-serif;font-size:1.3rem;margin-bottom:.25rem}
+.curso-banner p{font-size:.85rem;opacity:.8}
+.prog-wrap{background:var(--blanco);border:1.5px solid var(--borde);border-radius:11px;padding:.9rem 1.1rem;margin-bottom:1.3rem;display:flex;align-items:center;gap:.9rem}
+.prog-bar{flex:1;height:7px;background:var(--fondo);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;width:0%;transition:width .4s}
+.prog-pct{font-weight:600;font-size:.85rem;white-space:nowrap}
+.caps-list{display:flex;flex-direction:column;gap:.7rem}
+.cap-item{background:var(--blanco);border:1.5px solid var(--borde);border-radius:12px;overflow:hidden}
+.cap-item-hdr{padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;cursor:pointer}
+.cap-item-hdr:hover{background:var(--fondo)}
+.cap-check{width:26px;height:26px;border-radius:50%;border:2px solid var(--gris-l);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--verde);flex-shrink:0;transition:all .2s}
+.cap-check.done{background:var(--verde);border-color:var(--verde);color:#fff}
+.cap-item-tit{flex:1;font-weight:600;font-size:.87rem}
+.cap-item-dur{font-size:.75rem;color:var(--gris-m)}
+.cap-item-body{padding:0;max-height:0;overflow:hidden;transition:max-height .35s,padding .3s}
+.cap-item-body.open{max-height:1200px;padding:1rem}
+.contenido{font-size:.86rem;color:var(--gris-m);line-height:1.75;margin-bottom:1rem}
+.contenido h4{color:var(--gris);font-weight:600;font-size:.88rem;margin:1rem 0 .35rem}
+.contenido h4:first-child{margin-top:0}
+.contenido ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;padding-left:.2rem}
+.contenido ul li{display:flex;gap:.5rem;align-items:flex-start}
+.contenido ul li::before{content:'●';font-size:.45rem;margin-top:.55rem;flex-shrink:0}
+.tip-box{background:var(--azul-light);border-left:3px solid var(--azul);border-radius:0 10px 10px 0;padding:.7rem .9rem;margin:.8rem 0;font-size:.82rem;color:var(--azul-dark);line-height:1.5}
+.tip-box strong{color:var(--azul)}
+.btn-marcar{border:none;padding:.5rem 1.2rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem 1.5rem;color:var(--gris-m);font-size:.8rem;border-top:1px solid var(--borde);margin-top:2rem}
+footer strong{color:var(--azul-dark)}
+@media(max-width:600px){
+  .hero{padding:2.5rem 1.2rem 2rem}
+  .wrap{padding:1.8rem 1rem}
+  nav{padding:.7rem 1rem}
+  .nav-link{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Aprende<span>Digital</span></div>
+  <div class="nav-right">
+    <button class="nav-link" onclick="scrollTo('sec-cursos')">Cursos</button>
+    <button class="nav-link" onclick="scrollTo('sec-comprar')">¿Cómo comprar?</button>
+    <button class="nav-link" onclick="scrollTo('sec-acceso')">Ingresar</button>
+    <button class="btn-nav" onclick="scrollTo('sec-acceso')">Usar código</button>
+  </div>
+</nav>
+
+<!-- PÁGINA PRINCIPAL -->
+<div id="page-main" class="page active">
+
+  <div class="hero">
+    <div class="hero-badge">Cursos para funcionarios CESFAM</div>
+    <h1>Las herramientas digitales que necesitas <em>hoy</em> en salud pública</h1>
+    <p>Cursos prácticos con ejemplos reales de RAYEN, atención de salud y trabajo diario en el CESFAM.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">🤖 IA para la salud</span>
+      <span class="hero-pill">📊 Excel con datos reales</span>
+      <span class="hero-pill">📽️ PowerPoint efectivo</span>
+      <span class="hero-pill">🎨 Diseño con Canva</span>
+    </div>
+  </div>
+
+  <!-- CURSOS -->
+  <div class="wrap" id="sec-cursos">
+    <div class="sec-head">
+      <div class="sec-titulo">Los 4 cursos disponibles</div>
+      <div class="sec-sub">Haz clic en cualquier curso para ver el contenido completo</div>
+    </div>
+    <div class="cursos-grid">
+
+      <!-- IA -->
+      <div class="ccard" onclick="abrirModal('ia')">
+        <div class="ccard-top">
+          <div class="ccard-icon ic-ia">🤖</div>
+          <div>
+            <div class="ccard-nombre">IA para la Salud</div>
+            <div class="ccard-desc">ChatGPT y herramientas de IA aplicadas al trabajo en CESFAM y RAYEN</div>
+          </div>
+        </div>
+        <ul class="ccard-caps">
+          <li><span class="cnum cn-ia">1</span>¿Qué es la IA y cómo me ayuda en el CESFAM?</li>
+          <li><span class="cnum cn-ia">2</span>ChatGPT para redactar y resumir</li>
+          <li><span class="cnum cn-ia">3</span>IA para organizar tu agenda y tareas</li>
+          <li><span class="cnum cn-ia">4</span>IA y RAYEN: ejemplos prácticos</li>
+          <li><span class="cnum cn-ia">5</span>Privacidad, errores y buenas prácticas</li>
+        </ul>
+        <div class="ccard-footer">
+          <div class="precio">$5.000<small>5 cápsulas</small></div>
+          <button class="btn-ver bv-ia">Ver curso →</button>
+        </div>
+      </div>
+
+      <!-- EXCEL -->
+      <div class="ccard" onclick="abrirModal('excel')">
+        <div class="ccard-top">
+          <div class="ccard-icon ic-excel">📊</div>
+          <div>
+            <div class="ccard-nombre">Excel para el CESFAM</div>
+            <div class="ccard-desc">Maneja datos de pacientes, REM y estadísticas con Excel básico</div>
+          </div>
+        </div>
+        <ul class="ccard-caps">
+          <li><span class="cnum cn-excel">1</span>Primeros pasos y organizar datos</li>
+          <li><span class="cnum cn-excel">2</span>Fórmulas para contar atenciones y pacientes</li>
+          <li><span class="cnum cn-excel">3</span>Filtrar y ordenar listas de pacientes</li>
+          <li><span class="cnum cn-excel">4</span>Gráficos para informes y REM</li>
+          <li><span class="cnum cn-excel">5</span>Tablas dinámicas y trucos de velocidad</li>
+        </ul>
+        <div class="ccard-footer">
+          <div class="precio">$5.000<small>5 cápsulas</small></div>
+          <button class="btn-ver bv-excel">Ver curso →</button>
+        </div>
+      </div>
+
+      <!-- PPT -->
+      <div class="ccard" onclick="abrirModal('ppt')">
+        <div class="ccard-top">
+          <div class="ccard-icon ic-ppt">📽️</div>
+          <div>
+            <div class="ccard-nombre">PowerPoint Efectivo</div>
+            <div class="ccard-desc">Crea presentaciones profesionales para reuniones, capacitaciones y jornadas</div>
+          </div>
+        </div>
+        <ul class="ccard-caps">
+          <li><span class="cnum cn-ppt">1</span>Estructura y primeros pasos</li>
+          <li><span class="cnum cn-ppt">2</span>Diseño limpio: tipografía y colores</li>
+          <li><span class="cnum cn-ppt">3</span>Insertar datos, gráficos e imágenes</li>
+          <li><span class="cnum cn-ppt">4</span>Animaciones y transiciones útiles</li>
+          <li><span class="cnum cn-ppt">5</span>Presentaciones para el CESFAM</li>
+        </ul>
+        <div class="ccard-footer">
+          <div class="precio">$5.000<small>5 cápsulas</small></div>
+          <button class="btn-ver bv-ppt">Ver curso →</button>
+        </div>
+      </div>
+
+      <!-- DISEÑO -->
+      <div class="ccard" onclick="abrirModal('dis')">
+        <div class="ccard-top">
+          <div class="ccard-icon ic-dis">🎨</div>
+          <div>
+            <div class="ccard-nombre">Diseño con Canva</div>
+            <div class="ccard-desc">Crea afiches, flyers y materiales visuales para el CESFAM sin ser diseñador</div>
+          </div>
+        </div>
+        <ul class="ccard-caps">
+          <li><span class="cnum cn-dis">1</span>Canva desde cero: cuenta y primeros pasos</li>
+          <li><span class="cnum cn-dis">2</span>Afiches para campañas de salud</li>
+          <li><span class="cnum cn-dis">3</span>Editar imágenes y fotos fácil</li>
+          <li><span class="cnum cn-dis">4</span>Materiales para redes sociales del CESFAM</li>
+          <li><span class="cnum cn-dis">5</span>Adobe Express y exportar tus diseños</li>
+        </ul>
+        <div class="ccard-footer">
+          <div class="precio">$5.000<small>5 cápsulas</small></div>
+          <button class="btn-ver bv-dis">Ver curso →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CÓMO COMPRAR -->
+  <div class="wrap" id="sec-comprar">
+    <div class="sec-head">
+      <div class="sec-titulo">¿Cómo comprar?</div>
+      <div class="sec-sub">Simple, rápido y sin complicaciones</div>
+    </div>
+    <div class="comprar-box">
+      <div class="pasos">
+        <div class="paso"><div class="paso-n">01</div><h4>Elige tu curso</h4><p>Los 4 cursos cuestan $5.000 cada uno. También puedes pedir los 4 con descuento.</p></div>
+        <div class="paso"><div class="paso-n">02</div><h4>Paga por transferencia</h4><p>Transfiérenos por Mercado Pago o transferencia bancaria al contacto de abajo.</p></div>
+        <div class="paso"><div class="paso-n">03</div><h4>Recibe tu código</h4><p>Te enviamos un código único por WhatsApp. Úsalo para entrar al curso.</p></div>
+        <div class="paso"><div class="paso-n">04</div><h4>Aprende a tu ritmo</h4><p>Accede desde el computador o celular, cuando quieras y cuantas veces quieras.</p></div>
+      </div>
+      <div class="contacto-pill">
+        <p>📱 Contacto de pago — WhatsApp / Mercado Pago</p>
+        <span><strong>+56 9 XXXX XXXX</strong> — edita este número con el tuyo</span>
+        <small>Respuesta en menos de 24 horas hábiles</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCESO -->
+  <div class="wrap" id="sec-acceso">
+    <div class="sec-head">
+      <div class="sec-titulo">¿Ya compraste?</div>
+      <div class="sec-sub">Ingresa tu código para acceder a tu curso</div>
+    </div>
+    <div class="acceso-card">
+      <div class="acc-icon">🔑</div>
+      <div class="acc-titulo">Ingresa tu código de acceso</div>
+      <div class="acc-desc">Escribe el código que recibiste por WhatsApp después de tu pago. El código activa el curso para siempre.</div>
+      <div class="acc-row">
+        <input type="text" id="cod-input" placeholder="Ej: IA2024A" maxlength="10"/>
+        <button class="btn-entrar" onclick="verificar()">Entrar</button>
+      </div>
+      <div class="err-msg" id="err-msg">Código no encontrado. Verifica con quien te vendió el curso.</div>
+      <p class="acc-hint">¿Sin código aún? <a onclick="scrollTo('sec-comprar')">Mira cómo comprar aquí</a></p>
+    </div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-titulo">Zona de administración</div>
+      <div class="sec-sub">Solo para el/la docente — gestiona los códigos y ventas</div>
+    </div>
+    <div id="admin-login-box" class="admin-login-box">
+      <h3>🔐 Acceso Docente</h3>
+      <input type="password" id="adm-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')loginAdmin()"/>
+      <button class="btn-admin-in" onclick="loginAdmin()">Entrar como docente</button>
+    </div>
+    <div id="admin-panel" class="admin-panel" style="display:none">
+      <h3>Panel de Administración</h3>
+      <div style="font-size:.82rem;opacity:.7;margin-bottom:.8rem">Códigos generados y estado de uso:</div>
+      <div class="codigos-lista" id="cods-lista"></div>
+      <div class="admin-btns">
+        <button class="btn-adm" onclick="genCod('ia')">+ Código IA</button>
+        <button class="btn-adm" onclick="genCod('excel')">+ Código Excel</button>
+        <button class="btn-adm" onclick="genCod('ppt')">+ Código PowerPoint</button>
+        <button class="btn-adm" onclick="genCod('dis')">+ Código Diseño</button>
+        <button class="btn-adm" onclick="exportCods()">📋 Copiar listado</button>
+      </div>
+      <div class="adm-msg" id="adm-msg"></div>
+    </div>
+  </div>
+
+</div><!-- fin page-main -->
+
+<!-- PÁGINAS DE CURSOS -->
+<div id="page-curso-ia" class="page"><div class="curso-pg" id="view-ia"></div></div>
+<div id="page-curso-excel" class="page"><div class="curso-pg" id="view-excel"></div></div>
+<div id="page-curso-ppt" class="page"><div class="curso-pg" id="view-ppt"></div></div>
+<div id="page-curso-dis" class="page"><div class="curso-pg" id="view-dis"></div></div>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal-ov" onclick="cerrarModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-hdr">
+      <div class="modal-hdr-l">
+        <div class="modal-ico" id="m-ico"></div>
+        <div><div class="modal-titulo" id="m-tit"></div><div class="modal-sub" id="m-sub"></div></div>
+      </div>
+      <button class="modal-x" onclick="document.getElementById('modal-ov').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="caps-preview" id="m-caps"></div>
+      <div class="modal-cta">
+        <div><p>¿Listo para empezar?</p><small>$5.000 · acceso de por vida · en tu ritmo</small></div>
+        <button class="btn-cta" onclick="document.getElementById('modal-ov').classList.remove('open');scrollTo('sec-comprar')">¿Cómo comprar? →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Aprende Digital · Cursos para funcionarios CESFAM · <strong>+56 9 XXXX XXXX</strong></p>
+  <p style="margin-top:.4rem;opacity:.6">Hecho con ❤️ para que todos en salud pública aprendan lo digital</p>
+</footer>
+
+<script>
+// ===================== DATOS DE CURSOS =====================
+const CURSOS = {
+  ia: {
+    nombre: "IA para la Salud",
+    icon: "🤖",
+    bgBanner: "linear-gradient(135deg, #042C53 0%, #185FA5 100%)",
+    progColor: "#185FA5",
+    capsulas: [
+      {
+        titulo: "¿Qué es la IA y cómo me ayuda en el CESFAM?",
+        duracion: "15 min",
+        temas: ["Qué es la IA en términos simples", "Cómo la usan otros profesionales de salud", "Diferencia entre IA, ChatGPT y asistentes", "Ejemplos reales en el contexto del CESFAM"],
+        contenido: `
+<h4>¿Qué es la Inteligencia Artificial?</h4>
+<p>La IA es tecnología que permite a los computadores aprender y responder como lo haría una persona. No es magia: es una herramienta como RAYEN o el correo electrónico — solo hay que aprender a usarla.</p>
+<div class="tip-box"><strong>Ejemplo real:</strong> Cuando escribes síntomas en Google y te sugiere diagnósticos, eso es IA. ChatGPT funciona igual, pero puedes hacerle preguntas directas y conversar con ella.</div>
+<h4>¿Para qué sirve en el trabajo del CESFAM?</h4>
+<ul>
+<li>Redactar correos formales, informes o minutas en minutos</li>
+<li>Resumir documentos largos del MINSAL o circulares</li>
+<li>Preparar respuestas a pacientes con consultas frecuentes</li>
+<li>Organizar ideas para una capacitación o jornada</li>
+<li>Traducir documentos o adaptar textos técnicos a lenguaje simple</li>
+</ul>
+<h4>Lo más importante</h4>
+<ul>
+<li>La IA no reemplaza tu criterio clínico ni administrativo</li>
+<li>Es un asistente, no una autoridad — siempre revisa lo que produce</li>
+<li>Cualquier funcionario puede aprender a usarla, sin importar el cargo</li>
+</ul>`
+      },
+      {
+        titulo: "ChatGPT para redactar y resumir",
+        duracion: "20 min",
+        temas: ["Cómo crear cuenta gratuita paso a paso", "Redactar correos y oficios formales", "Resumir circulares y documentos del MINSAL", "Adaptar textos técnicos a lenguaje para pacientes"],
+        contenido: `
+<h4>Cómo empezar</h4>
+<p>Entra a <strong>chat.openai.com</strong> desde tu computador o celular. Crea una cuenta con tu correo (puede ser el personal). La versión gratuita es suficiente para todo lo que veremos.</p>
+<h4>Prompts útiles para el CESFAM</h4>
+<ul>
+<li>"Redacta un correo formal para informar al equipo que la reunión del lunes se pospone al miércoles a las 9am"</li>
+<li>"Resume en 5 puntos clave esta circular del MINSAL: [pega el texto]"</li>
+<li>"Explica qué es la hipertensión arterial en palabras simples, para un paciente adulto mayor sin estudios médicos"</li>
+<li>"Escribe un afiche breve para invitar a la jornada de vacunación antigripal del jueves"</li>
+<li>"Redacta una respuesta amable para un paciente que se queja de la espera en la agenda telefónica"</li>
+</ul>
+<div class="tip-box"><strong>Truco:</strong> Si la respuesta no te convence, escribe "inténtalo de nuevo, más corto" o "hazlo más formal". Puedes pedirle cambios hasta que quede como necesitas.</div>
+<h4>Claves para buenas preguntas</h4>
+<ul>
+<li>Sé específico: incluye el contexto (CESFAM, salud pública, paciente adulto mayor, etc.)</li>
+<li>Indica el tono: formal, amigable, técnico, simple</li>
+<li>Pide el formato: lista, párrafo, correo con asunto, tabla</li>
+</ul>`
+      },
+      {
+        titulo: "IA para organizar tu agenda y tareas",
+        duracion: "15 min",
+        temas: ["Planificar una jornada o campaña de salud", "Crear checklists y protocolos rápidos", "Organizar ideas para reuniones de equipo", "Ayuda para priorizar tareas del día"],
+        contenido: `
+<h4>IA como organizadora de trabajo</h4>
+<p>Además de redactar, la IA es excelente para ayudarte a pensar en orden. Puedes pedirle que estructure una jornada, liste los pasos de un proceso o te ayude a preparar una reunión.</p>
+<h4>Ejemplos para el CESFAM</h4>
+<ul>
+<li>"Necesito organizar la jornada de vacunación antigripal para 300 personas. Dame un checklist con los pasos previos, del día y posteriores"</li>
+<li>"¿Qué puntos debería incluir en la reunión mensual del equipo de salud familiar?"</li>
+<li>"Arma un protocolo simple para el registro de pacientes con diabetes tipo 2 en control"</li>
+<li>"Tengo 5 tareas urgentes para esta semana, ayúdame a priorizarlas: [lista tus tareas]"</li>
+<li>"¿Cuáles son los pasos para tramitar una interconsulta en el sistema público de salud?"</li>
+</ul>
+<div class="tip-box"><strong>Para directivos y jefaturas:</strong> La IA puede ayudarte a preparar informes de gestión, redactar objetivos para evaluaciones de desempeño o estructurar planes de trabajo anuales.</div>
+<h4>Para TENS y técnicos</h4>
+<ul>
+<li>Pídele que explique un procedimiento clínico en pasos simples</li>
+<li>Úsala para preparar material de educación a pacientes</li>
+<li>Ayuda a crear listas de insumos para procedimientos frecuentes</li>
+</ul>`
+      },
+      {
+        titulo: "IA y RAYEN: ejemplos prácticos",
+        duracion: "20 min",
+        temas: ["Cómo la IA complementa el uso de RAYEN", "Redactar evoluciones y notas clínicas con ayuda de IA", "Preparar resúmenes de atención para derivaciones", "Generar educación personalizada para cada paciente"],
+        contenido: `
+<h4>¿Qué tiene que ver la IA con RAYEN?</h4>
+<p>RAYEN es el sistema de ficha clínica electrónica — ahí registras las atenciones. La IA no se conecta directamente a RAYEN, pero puedes usarla <em>antes o después</em> de ingresar a RAYEN para preparar mejor lo que vas a registrar.</p>
+<div class="tip-box"><strong>Regla de oro:</strong> Nunca ingreses datos reales de pacientes (nombre, RUT, diagnóstico identificable) en ChatGPT. Usa ejemplos genéricos: "paciente de 65 años, hipertensión, en control".</div>
+<h4>Casos de uso con RAYEN</h4>
+<ul>
+<li><strong>Antes de la atención:</strong> "Ayúdame a preparar las preguntas clave para una consulta de control de diabetes tipo 2 en adulto mayor"</li>
+<li><strong>Para evoluciones:</strong> "Estructura una nota clínica breve con estos datos: [descripción sin identificar al paciente]"</li>
+<li><strong>Para derivaciones:</strong> "Redacta un resumen de derivación a cardiología para un paciente con HTA mal controlada, sin datos personales"</li>
+<li><strong>Para educación:</strong> "Dame una explicación simple sobre el uso correcto del inhalador para un paciente con asma"</li>
+</ul>
+<h4>Para administrativos con RAYEN</h4>
+<ul>
+<li>Pide a la IA que explique términos técnicos que aparezcan en la ficha</li>
+<li>Úsala para redactar mensajes recordatorios de controles o exámenes</li>
+<li>Genera respuestas tipo para preguntas frecuentes de pacientes</li>
+</ul>`
+      },
+      {
+        titulo: "Privacidad, errores y buenas prácticas",
+        duracion: "15 min",
+        temas: ["Los 5 errores más comunes al usar IA", "Protección de datos de pacientes — qué nunca hacer", "Cómo verificar la información que entrega la IA", "Próximos pasos para seguir aprendiendo"],
+        contenido: `
+<h4>Errores que debes evitar</h4>
+<ul>
+<li><strong>Creer todo sin verificar:</strong> La IA puede inventar datos, dosis de medicamentos o leyes que no existen. Siempre confirma la información importante.</li>
+<li><strong>Ingresar datos de pacientes:</strong> Nunca pongas RUT, nombre completo, diagnósticos identificables ni datos de fichas reales.</li>
+<li><strong>Copiar sin revisar:</strong> La IA comete errores de contexto. Lee siempre antes de usar lo que produce.</li>
+<li><strong>Usarla para decisiones clínicas definitivas:</strong> Es un apoyo, no un diagnóstico.</li>
+</ul>
+<div class="tip-box"><strong>Sobre privacidad:</strong> ChatGPT puede usar lo que escribes para entrenar sus sistemas. Trabaja siempre con datos genéricos y anonimizados cuando describes casos clínicos.</div>
+<h4>Cómo verificar</h4>
+<ul>
+<li>Pregunta a la IA: "¿Estás seguro de esto? ¿Cuál es la fuente?"</li>
+<li>Para temas clínicos, confirma en Medline, Minsal.cl o con un colega</li>
+<li>Para datos estadísticos, confirma en DEIS o fuentes oficiales</li>
+</ul>
+<h4>¡Felicidades, terminaste el curso! 🎉</h4>
+<ul>
+<li>Practica 10 minutos al día — es suficiente para volverse experto</li>
+<li>Comparte los prompts que te funcionen con el equipo</li>
+<li>Explora Gemini (Google) y Copilot (Microsoft) como alternativas</li>
+</ul>`
+      }
+    ]
+  },
+
+  excel: {
+    nombre: "Excel para el CESFAM",
+    icon: "📊",
+    bgBanner: "linear-gradient(135deg, #085041 0%, #1D9E75 100%)",
+    progColor: "#1D9E75",
+    capsulas: [
+      {
+        titulo: "Primeros pasos y organizar datos",
+        duracion: "20 min",
+        temas: ["La pantalla de Excel: filas, columnas, celdas", "Cómo ingresar y editar datos correctamente", "Formato de celdas: texto, números, fechas", "Guardar y nombrar archivos de forma ordenada"],
+        contenido: `
+<h4>¿Para qué usamos Excel en el CESFAM?</h4>
+<p>Excel sirve para organizar cualquier lista de datos: pacientes en control, atenciones diarias, resultados de exámenes, insumos del botiquín, programas de salud. Aprender lo básico te ahorra horas de trabajo.</p>
+<h4>Las partes de Excel</h4>
+<ul>
+<li><strong>Filas:</strong> horizontales, numeradas (1, 2, 3...)</li>
+<li><strong>Columnas:</strong> verticales, con letras (A, B, C...)</li>
+<li><strong>Celda:</strong> la intersección. A1 = columna A, fila 1</li>
+<li><strong>Hoja:</strong> una "página" dentro del archivo. Puedes tener varias (enero, febrero, etc.)</li>
+</ul>
+<h4>Cómo organizar una lista de pacientes</h4>
+<ul>
+<li>La fila 1 siempre debe tener los encabezados: Nombre, RUT, Programa, Fecha, etc.</li>
+<li>Un dato por celda — no pongas nombre y apellido juntos si luego necesitas ordenarlos</li>
+<li>Las fechas escríbelas siempre igual: DD/MM/AAAA</li>
+<li>Evita celdas combinadas si vas a filtrar o ordenar después</li>
+</ul>
+<div class="tip-box"><strong>Truco de nomenclatura:</strong> Nombra tus archivos con fecha incluida: "Pacientes_HTA_Enero2025.xlsx". Te ahorras buscar cuál es el más reciente.</div>`
+      },
+      {
+        titulo: "Fórmulas para contar atenciones y pacientes",
+        duracion: "25 min",
+        temas: ["SUMA y PROMEDIO para estadísticas mensuales", "CONTAR y CONTARA para registros", "CONTAR.SI para filtrar por programa o diagnóstico", "Fórmulas para el REM y estadísticas DEIS"],
+        contenido: `
+<h4>Las fórmulas más útiles en salud</h4>
+<ul>
+<li><strong>=SUMA(B2:B32)</strong> — suma las atenciones de cada día del mes</li>
+<li><strong>=PROMEDIO(C2:C32)</strong> — promedio diario de pacientes atendidos</li>
+<li><strong>=CONTAR(A2:A200)</strong> — cuenta cuántos números hay (ej: RUTs)</li>
+<li><strong>=CONTARA(A2:A200)</strong> — cuenta celdas no vacías (cualquier tipo de dato)</li>
+<li><strong>=CONTAR.SI(D2:D200,"HTA")</strong> — cuenta cuántos pacientes tienen HTA en la columna D</li>
+<li><strong>=MAX(B2:B32)</strong> — día con más atenciones en el mes</li>
+</ul>
+<div class="tip-box"><strong>Para el REM:</strong> Usa CONTAR.SI para separar atenciones por tipo de prestación o profesional. Ejemplo: =CONTAR.SI(E2:E200,"Enfermera") cuenta las atenciones de enfermería.</div>
+<h4>Ejemplo práctico real</h4>
+<ul>
+<li>Columna A: Fecha | Columna B: N° atenciones | Columna C: Profesional | Columna D: Programa</li>
+<li>Total mes: =SUMA(B2:B32)</li>
+<li>Total por programa diabetes: =CONTAR.SI(D2:D200,"Diabetes")</li>
+<li>Promedio diario: =PROMEDIO(B2:B32)</li>
+</ul>`
+      },
+      {
+        titulo: "Filtrar y ordenar listas de pacientes",
+        duracion: "20 min",
+        temas: ["Ordenar alfabéticamente o por fecha", "Activar filtros para ver solo un programa", "BUSCARV para encontrar datos de un paciente", "Buscar y reemplazar para corregir errores masivos"],
+        contenido: `
+<h4>Ordenar datos</h4>
+<p>Selecciona cualquier celda dentro de tus datos → Pestaña Datos → Ordenar. Puedes ordenar por nombre, fecha de atención, programa, etc.</p>
+<h4>Filtros — imprescindible</h4>
+<ul>
+<li>Selecciona los encabezados de tu lista</li>
+<li>Datos → Filtro (o Ctrl+Shift+L)</li>
+<li>Aparecen flechas en cada columna — haz clic para filtrar</li>
+<li>Ejemplo: ver solo los pacientes del programa cardiovascular</li>
+<li>Ejemplo: ver solo las atenciones de una semana específica</li>
+</ul>
+<div class="tip-box"><strong>Uso real en CESFAM:</strong> Filtra tu lista de pacientes en control por "Programa = Diabetes" y "Mes = Marzo" para saber cuántos controles tienes pendientes.</div>
+<h4>BUSCARV — buscar datos de un paciente</h4>
+<ul>
+<li>Sirve para: escribir el RUT y que Excel traiga automáticamente el nombre, programa o último control</li>
+<li>Fórmula: =BUSCARV(lo que buscas, tabla de datos, número de columna a mostrar, 0)</li>
+<li>Ejemplo: =BUSCARV(A2, TablasPacientes, 2, 0) — busca el RUT en A2 y trae el nombre (columna 2)</li>
+</ul>`
+      },
+      {
+        titulo: "Gráficos para informes y REM",
+        duracion: "20 min",
+        temas: ["Crear gráfico de barras de atenciones mensuales", "Gráfico circular para distribución por programa", "Personalizar con colores institucionales", "Insertar gráficos en informes de Word o PowerPoint"],
+        contenido: `
+<h4>¿Por qué hacer gráficos?</h4>
+<p>Un gráfico bien hecho dice más que una tabla en cualquier reunión o informe. En el CESFAM los usamos para mostrar cumplimiento de metas, evolución de atenciones y distribución de pacientes por programa.</p>
+<h4>Cómo crear un gráfico paso a paso</h4>
+<ul>
+<li>Selecciona los datos que quieres graficar (incluye los encabezados)</li>
+<li>Insertar → Gráficos recomendados</li>
+<li>Elige el tipo y haz clic en Aceptar</li>
+<li>Haz clic sobre el gráfico para editarlo: añade título, cambia colores, ajusta etiquetas</li>
+</ul>
+<h4>¿Qué tipo de gráfico usar?</h4>
+<ul>
+<li><strong>Barras/columnas:</strong> comparar atenciones por mes o por profesional</li>
+<li><strong>Circular (torta):</strong> distribución de pacientes por programa (HTA, Diabetes, EPOC...)</li>
+<li><strong>Líneas:</strong> evolución de atenciones a lo largo del año</li>
+</ul>
+<div class="tip-box"><strong>Para el informe REM:</strong> Crea un gráfico de barras con los totales mensuales por prestación. Cópialo con Ctrl+C y pégalo directo en tu informe de Word.</div>`
+      },
+      {
+        titulo: "Tablas dinámicas y trucos de velocidad",
+        duracion: "15 min",
+        temas: ["Qué es una tabla dinámica y para qué sirve", "Crear un resumen de atenciones por programa en 2 minutos", "Los 10 atajos de teclado más usados", "Inmovilizar encabezados y proteger el archivo"],
+        contenido: `
+<h4>Tablas dinámicas — el superpoder de Excel</h4>
+<p>Una tabla dinámica resume miles de filas en segundos. Es perfecta para generar reportes del REM o resúmenes de atenciones sin necesidad de escribir fórmulas complejas.</p>
+<ul>
+<li>Selecciona tus datos → Insertar → Tabla dinámica</li>
+<li>Arrastra "Programa" a Filas y "N° atenciones" a Valores</li>
+<li>Excel crea automáticamente el resumen por programa</li>
+</ul>
+<div class="tip-box"><strong>Ejemplo real:</strong> Si tienes 2.000 filas de atenciones del año, una tabla dinámica te muestra el total por mes, por profesional y por programa en menos de 1 minuto.</div>
+<h4>Atajos imprescindibles</h4>
+<ul>
+<li><strong>Ctrl+S:</strong> guardar (úsalo siempre)</li>
+<li><strong>Ctrl+Z:</strong> deshacer</li>
+<li><strong>Ctrl+F:</strong> buscar</li>
+<li><strong>Ctrl+H:</strong> buscar y reemplazar</li>
+<li><strong>Ctrl+Shift+L:</strong> activar/desactivar filtros</li>
+<li><strong>Ctrl+Fin:</strong> ir al último dato de la hoja</li>
+<li><strong>Alt+Enter:</strong> salto de línea dentro de una celda</li>
+</ul>
+<h4>¡Felicidades, terminaste! 🎉</h4>
+<ul>
+<li>Practica con una lista real de tu trabajo (datos anónimos)</li>
+<li>El mejor aprendizaje es resolver un problema real con Excel</li>
+</ul>`
+      }
+    ]
+  },
+
+  ppt: {
+    nombre: "PowerPoint Efectivo",
+    icon: "📽️",
+    bgBanner: "linear-gradient(135deg, #4A1B0C 0%, #D85A30 100%)",
+    progColor: "#D85A30",
+    capsulas: [
+      {
+        titulo: "Estructura y primeros pasos",
+        duracion: "15 min",
+        temas: ["Abrir PowerPoint y la interfaz básica", "Diferencia entre diapositiva, presentación y plantilla", "Cómo agregar, duplicar y eliminar diapositivas", "La estructura básica de toda buena presentación"],
+        contenido: `
+<h4>¿Para qué usamos PowerPoint en el CESFAM?</h4>
+<p>Capacitaciones al equipo, presentaciones en reuniones de gestión, charlas educativas a pacientes, informes de cumplimiento de metas. PowerPoint bien usado hace que tu mensaje llegue claro y profesional.</p>
+<h4>La interfaz básica</h4>
+<ul>
+<li><strong>Panel izquierdo:</strong> miniaturas de cada diapositiva</li>
+<li><strong>Centro:</strong> la diapositiva activa que estás editando</li>
+<li><strong>Pestañas arriba:</strong> Inicio, Insertar, Diseño, Animaciones, Presentación</li>
+<li><strong>Vista presentación:</strong> tecla F5 para presentar desde el principio</li>
+</ul>
+<h4>Estructura ganadora para cualquier presentación</h4>
+<ul>
+<li><strong>Diapositiva 1 — Portada:</strong> título, tu nombre o cargo, fecha</li>
+<li><strong>Diapositiva 2 — Índice o contexto:</strong> qué vas a mostrar y por qué</li>
+<li><strong>Diapositivas 3 a N — Contenido:</strong> una idea principal por diapositiva</li>
+<li><strong>Última — Conclusiones:</strong> los puntos clave y próximos pasos</li>
+</ul>
+<div class="tip-box"><strong>Regla de oro:</strong> Una idea por diapositiva. Si tienes que leer párrafos completos, mejor mándalos por correo.</div>`
+      },
+      {
+        titulo: "Diseño limpio: tipografía y colores",
+        duracion: "20 min",
+        temas: ["Elegir y aplicar un tema consistente", "Tipografía: qué fuentes usar y cuáles evitar", "Colores que funcionan en proyección", "Cuánto texto es demasiado texto"],
+        contenido: `
+<h4>El error más común en PowerPoint</h4>
+<p>Demasiado texto. Si tu diapositiva tiene más de 40 palabras, tu audiencia deja de escucharte y se pone a leer. Las diapositivas son para apoyar lo que dices, no para reemplazarlo.</p>
+<h4>Tipografía</h4>
+<ul>
+<li>Usa máximo 2 fuentes: una para títulos, otra para el cuerpo</li>
+<li>Fuentes legibles en proyección: Calibri, Gill Sans, Georgia, Trebuchet</li>
+<li>Títulos: mínimo 28-36 puntos. Cuerpo: mínimo 18-20 puntos</li>
+<li>Evita Comic Sans, cursivas en bloques de texto y fuentes muy decorativas</li>
+</ul>
+<h4>Colores que funcionan</h4>
+<ul>
+<li>Fondo claro con texto oscuro: siempre legible en proyector antiguo</li>
+<li>Máximo 3 colores en toda la presentación: uno principal, uno de acento, uno neutro</li>
+<li>Si usas colores institucionales del CESFAM o municipio, úsalos consistentemente</li>
+</ul>
+<div class="tip-box"><strong>Truco rápido:</strong> PowerPoint tiene temas prediseñados (Diseño → Temas). Elige uno y aplícalo a todas las diapositivas — mantiene la coherencia visual sin esfuerzo.</div>`
+      },
+      {
+        titulo: "Insertar datos, gráficos e imágenes",
+        duracion: "20 min",
+        temas: ["Pegar gráficos de Excel correctamente", "Insertar imágenes y ajustar tamaño", "Usar SmartArt para diagramas rápidos", "Tablas simples dentro de PowerPoint"],
+        contenido: `
+<h4>Gráficos desde Excel</h4>
+<p>El método más limpio: en Excel, clic en el gráfico → Ctrl+C → en PowerPoint, Inicio → Pegar especial → Imagen (PNG). Así el gráfico no cambia aunque modifiques el Excel original.</p>
+<h4>Imágenes</h4>
+<ul>
+<li>Insertar → Imágenes → desde tu computador o desde internet</li>
+<li>Para imágenes de salud y sin copyright: unsplash.com o freepik.com</li>
+<li>Clic derecho sobre la imagen → Formato de imagen → para recortar, ajustar brillo, etc.</li>
+<li>Mantén Shift al redimensionar para no distorsionar la imagen</li>
+</ul>
+<h4>SmartArt — diagramas sin diseñar</h4>
+<ul>
+<li>Insertar → SmartArt → elige entre listas, procesos, ciclos, jerarquías</li>
+<li>Perfecto para mostrar pasos de un protocolo, el organigrama del equipo o un flujo de atención</li>
+</ul>
+<div class="tip-box"><strong>Para presentaciones del CESFAM:</strong> Inserta el logo del municipio o del establecimiento en la diapositiva patrón (Ver → Patrón de diapositivas) y aparecerá en todas automáticamente.</div>`
+      },
+      {
+        titulo: "Animaciones y transiciones útiles",
+        duracion: "15 min",
+        temas: ["Qué animaciones sí usar y cuáles evitar", "Transición simple entre diapositivas", "Hacer aparecer elementos uno a uno", "Configurar avance automático para pantallas del CESFAM"],
+        contenido: `
+<h4>La regla de las animaciones</h4>
+<p>Menos es más. Las animaciones deben tener un propósito: revelar información gradualmente, destacar un punto clave. Las animaciones decorativas distraen y hacen ver la presentación poco profesional.</p>
+<h4>Animaciones que sí funcionan</h4>
+<ul>
+<li><strong>Aparecer (Appear):</strong> el más limpio y profesional. Muestra los puntos uno a uno.</li>
+<li><strong>Fundido (Fade):</strong> suave, elegante, funciona en cualquier contexto</li>
+<li>Evita: girar, rebotar, espiral, zoom exagerado</li>
+</ul>
+<h4>Transiciones entre diapositivas</h4>
+<ul>
+<li>Transiciones → elige una simple (Fundido o Empujar) → Aplicar a todas</li>
+<li>No mezcles distintas transiciones en la misma presentación</li>
+</ul>
+<div class="tip-box"><strong>Para pantallas del CESFAM en salas de espera:</strong> Transiciones → Avanzar diapositiva → Automáticamente después de: 8-10 segundos. Crea presentaciones con información para pacientes que se pasan solas.</div>`
+      },
+      {
+        titulo: "Presentaciones para el CESFAM",
+        duracion: "20 min",
+        temas: ["Presentación de resultados de metas sanitarias", "Capacitación interna al equipo clínico", "Charla educativa para pacientes y comunidad", "Guardar como PDF y compartir correctamente"],
+        contenido: `
+<h4>Presentación de metas sanitarias</h4>
+<ul>
+<li>Slide 1: Portada con período evaluado</li>
+<li>Slide 2: Resumen ejecutivo — 3 números clave</li>
+<li>Slides 3-6: Un gráfico de Excel por programa (HTA, Diabetes, GES, etc.)</li>
+<li>Slide 7: Logros y dificultades</li>
+<li>Slide 8: Propuestas de mejora</li>
+</ul>
+<h4>Charla educativa a pacientes</h4>
+<ul>
+<li>Letra grande (mínimo 24pt) — muchos pacientes tienen problemas de visión</li>
+<li>Una idea por diapositiva, con imagen de apoyo</li>
+<li>Lenguaje simple: nada de siglas ni tecnicismos sin explicar</li>
+<li>Incluye siempre: qué es, por qué importa, qué hacer</li>
+</ul>
+<h4>Exportar y compartir</h4>
+<ul>
+<li>Archivo → Guardar como → PDF: el archivo se ve igual en cualquier computador</li>
+<li>Archivo → Guardar como → Presentación de PowerPoint (.pptx): para que otros puedan editar</li>
+<li>Para WhatsApp o correo: el PDF es siempre la mejor opción</li>
+</ul>
+<h4>¡Terminaste el curso! 🎉</h4>
+<ul>
+<li>Crea tu próxima presentación de reunión con lo que aprendiste</li>
+<li>Pide feedback a un colega antes de presentar</li>
+</ul>`
+      }
+    ]
+  },
+
+  dis: {
+    nombre: "Diseño con Canva",
+    icon: "🎨",
+    bgBanner: "linear-gradient(135deg, #26215C 0%, #7F77DD 100%)",
+    progColor: "#7F77DD",
+    capsulas: [
+      {
+        titulo: "Canva desde cero: cuenta y primeros pasos",
+        duracion: "20 min",
+        temas: ["Crear cuenta gratuita en Canva", "La interfaz: plantillas, elementos, texto", "Formatos disponibles: afiche, story, presentación", "Cómo guardar y descargar tu diseño"],
+        contenido: `
+<h4>¿Qué es Canva?</h4>
+<p>Canva es una herramienta de diseño gráfico 100% online y gratuita. No necesitas instalar nada ni tener conocimientos de diseño. Miles de plantillas listas para personalizar con los datos de tu CESFAM.</p>
+<h4>Cómo empezar</h4>
+<ul>
+<li>Entra a <strong>canva.com</strong> y crea cuenta con tu correo o Google</li>
+<li>En la barra de búsqueda, escribe lo que necesitas: "afiche salud", "flyer campaña", "presentación"</li>
+<li>Elige una plantilla que te guste y haz clic en "Usar esta plantilla"</li>
+<li>Cambia el texto, colores e imágenes con un clic</li>
+</ul>
+<h4>Los formatos más útiles para el CESFAM</h4>
+<ul>
+<li><strong>Afiche A4 vertical:</strong> para imprimir y pegar en el CESFAM</li>
+<li><strong>Post Instagram (1080x1080):</strong> para redes sociales del establecimiento</li>
+<li><strong>Presentación (1920x1080):</strong> alternativa visual a PowerPoint</li>
+<li><strong>Story (1080x1920):</strong> para estado de WhatsApp o Instagram Stories</li>
+</ul>
+<div class="tip-box"><strong>Truco:</strong> Si necesitas el mismo diseño en varios formatos, usa "Cambiar tamaño" (en la versión Pro) o simplemente crea uno nuevo para cada formato.</div>`
+      },
+      {
+        titulo: "Afiches para campañas de salud",
+        duracion: "25 min",
+        temas: ["Estructura de un buen afiche de salud", "Buscar y reemplazar imágenes en plantillas", "Agregar logo del CESFAM y del municipio", "Tipografía y jerarquía visual en afiches"],
+        contenido: `
+<h4>Un buen afiche de salud tiene 4 elementos</h4>
+<ul>
+<li><strong>Título claro y grande:</strong> la gente lo lee en 2 segundos. Que se entienda de lejos.</li>
+<li><strong>Información clave:</strong> fecha, hora, lugar, requisitos. Solo lo esencial.</li>
+<li><strong>Imagen que conecte:</strong> una foto de personas, una ilustración amigable</li>
+<li><strong>Pie con logos:</strong> logo del CESFAM, municipio, MINSAL si corresponde</li>
+</ul>
+<h4>Paso a paso en Canva</h4>
+<ul>
+<li>Busca "afiche salud" o "flyer médico" en plantillas</li>
+<li>Haz doble clic sobre cualquier texto para editarlo</li>
+<li>Haz clic sobre cualquier imagen → aparece el botón "Reemplazar" → busca tu propia foto o usa las de Canva</li>
+<li>Para agregar logo: Subir → selecciona el archivo del logo (PNG con fondo transparente es ideal)</li>
+</ul>
+<div class="tip-box"><strong>Para campañas de vacunación, PAP, control de niño sano:</strong> Busca en Canva "vacunación", "prevención salud" o "control médico" — hay decenas de plantillas listas en español.</div>
+<h4>Colores institucionales</h4>
+<ul>
+<li>Ve a la paleta de colores → "Agregar nuevo color" → ingresa el código hex del color institucional</li>
+<li>Los colores de la salud pública chilena: azul #003F8A, verde #00923F, o los de tu municipio</li>
+</ul>`
+      },
+      {
+        titulo: "Editar imágenes y fotos fácil",
+        duracion: "20 min",
+        temas: ["Recortar y ajustar fotos en Canva", "Eliminar el fondo de una imagen", "Aplicar filtros y ajustar brillo/contraste", "Crear marcos y efectos simples"],
+        contenido: `
+<h4>Edición básica de fotos en Canva</h4>
+<p>Canva tiene herramientas de edición de fotos integradas que hacen el trabajo de Photoshop en un clic. Son perfectas para preparar fotos del CESFAM para comunicaciones oficiales.</p>
+<h4>Lo que puedes hacer con un clic</h4>
+<ul>
+<li><strong>Recortar:</strong> Clic en la imagen → Recortar → ajusta el encuadre</li>
+<li><strong>Eliminar fondo:</strong> Clic en imagen → Editar imagen → Quitar fondo (funciona increíble para fotos de personas)</li>
+<li><strong>Filtros:</strong> Clic en imagen → Editar imagen → Filtros → elige el que más le quede</li>
+<li><strong>Ajustar brillo/contraste/saturación:</strong> Clic en imagen → Editar imagen → Ajustar</li>
+</ul>
+<div class="tip-box"><strong>Útil para el CESFAM:</strong> Toma una foto del equipo clínico, quítale el fondo, y úsala sobre cualquier diseño de afiche o presentación. Queda muy profesional.</div>
+<h4>Marcos y formas</h4>
+<ul>
+<li>Elementos → Marcos → elige una forma (círculo, hexágono, etc.)</li>
+<li>Arrastra tu foto sobre el marco y queda recortada en esa forma automáticamente</li>
+<li>Perfecto para fotos de presentaciones de personal nuevo o directivos</li>
+</ul>`
+      },
+      {
+        titulo: "Materiales para redes sociales del CESFAM",
+        duracion: "20 min",
+        temas: ["Crear un post para Facebook e Instagram", "Hacer una historia de WhatsApp con información sanitaria", "Serie de posts para una campaña de salud", "Programar publicaciones con Canva Pro"],
+        contenido: `
+<h4>Redes sociales en el CESFAM</h4>
+<p>Cada vez más establecimientos de salud usan Facebook, Instagram y WhatsApp para comunicar campañas, recordar controles y educar a la comunidad. Canva hace que cualquier funcionario pueda crear contenido de calidad.</p>
+<h4>Post para Facebook/Instagram</h4>
+<ul>
+<li>Nuevo diseño → Post de Instagram (1080x1080 px)</li>
+<li>Estructura: imagen de fondo, texto corto y poderoso, logo abajo</li>
+<li>Ejemplo: "¿Ya tienes tu control cardiovascular al día? Te esperamos sin cita previa los viernes de 8 a 12."</li>
+</ul>
+<h4>Historia de WhatsApp o Instagram</h4>
+<ul>
+<li>Nuevo diseño → Story de Instagram (1080x1920 px)</li>
+<li>Ideal para: fechas de campañas, horarios de atención, avisos urgentes</li>
+<li>Mantén el texto al centro — los bordes se cortan en algunos celulares</li>
+</ul>
+<div class="tip-box"><strong>Campaña serie:</strong> Crea 5 posts con el mismo estilo visual para una campaña (ej: Semana de la Lactancia Materna). Duplica el diseño base y cambia solo el texto de cada uno — quedan todos visualmente consistentes.</div>`
+      },
+      {
+        titulo: "Adobe Express y exportar tus diseños",
+        duracion: "15 min",
+        temas: ["Qué es Adobe Express y en qué se diferencia de Canva", "Herramientas exclusivas de Adobe Express", "Exportar en PDF, PNG y JPG desde Canva", "Imprimir directamente o enviar por WhatsApp"],
+        contenido: `
+<h4>Adobe Express — la alternativa de Adobe</h4>
+<p>Adobe Express (antes Adobe Spark) es gratuito y está en express.adobe.com. Tiene menos plantillas que Canva pero integra mejor con otros productos de Adobe. Vale la pena conocerla como alternativa.</p>
+<h4>Diferencias clave</h4>
+<ul>
+<li><strong>Canva:</strong> más plantillas, más fácil de usar, mejor para trabajo en equipo</li>
+<li><strong>Adobe Express:</strong> edición de video y audio, herramientas de marca más potentes, mejor calidad de exportación</li>
+<li>Para el CESFAM, Canva es la opción recomendada por su simplicidad</li>
+<li>Adobe Express es útil si ya manejas otros productos Adobe</li>
+</ul>
+<h4>Cómo exportar desde Canva</h4>
+<ul>
+<li><strong>PNG:</strong> para imágenes digitales, redes sociales, WhatsApp. Botón Compartir → Descargar → PNG</li>
+<li><strong>JPG:</strong> más liviano que PNG, ideal para correo electrónico</li>
+<li><strong>PDF estándar:</strong> para imprimir afiches en A4. Compartir → Descargar → PDF estándar</li>
+<li><strong>PDF para impresión:</strong> mayor calidad. Compartir → Descargar → PDF para impresión (con marcas de corte)</li>
+</ul>
+<div class="tip-box"><strong>Para imprimir en el CESFAM:</strong> Descarga en PDF estándar. Abre el PDF y usa el 100% de escala al imprimir — así el diseño queda exactamente como lo hiciste.</div>
+<h4>¡Felicidades, terminaste los 4 cursos! 🎉</h4>
+<ul>
+<li>Ya tienes las herramientas digitales más demandadas en salud pública</li>
+<li>Comparte lo que aprendiste con tu equipo del CESFAM</li>
+<li>La práctica diaria es lo que hace la diferencia</li>
+</ul>`
+      }
+    ]
+  }
+};
+
+// Códigos de acceso iniciales
+const CODS_DEFAULT = {
+  "IA2025A":  {curso:"ia",    usado:false},
+  "IA2025B":  {curso:"ia",    usado:false},
+  "EX2025A":  {curso:"excel", usado:false},
+  "EX2025B":  {curso:"excel", usado:false},
+  "PP2025A":  {curso:"ppt",   usado:false},
+  "PP2025B":  {curso:"ppt",   usado:false},
+  "DS2025A":  {curso:"dis",   usado:false},
+  "DS2025B":  {curso:"dis",   usado:false},
+  "DEMO001":  {curso:"ia",    usado:false},
+  "DEMO002":  {curso:"excel", usado:false},
+  "DEMO003":  {curso:"ppt",   usado:false},
+  "DEMO004":  {curso:"dis",   usado:false},
+};
+
+function getCods(){try{const s=localStorage.getItem('cods_v2');return s?JSON.parse(s):CODS_DEFAULT;}catch(e){return CODS_DEFAULT;}}
+function saveCods(c){try{localStorage.setItem('cods_v2',JSON.stringify(c));}catch(e){}}
+function getProg(t){try{const p=localStorage.getItem('prog2_'+t);return p?JSON.parse(p):{};}catch(e){return {};}}
+function saveProg(t,p){try{localStorage.setItem('prog2_'+t,JSON.stringify(p));}catch(e){}}
+
+// NAVEGACIÓN
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function volverHome(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-main').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// MODAL PREVIEW
+function abrirModal(tipo){
+  const c=CURSOS[tipo];
+  const mico=document.getElementById('m-ico');
+  mico.textContent=c.icon;
+  const bgs={ia:'var(--azul-light)',excel:'var(--verde-light)',ppt:'var(--coral-light)',dis:'var(--purp-light)'};
+  mico.style.background=bgs[tipo];
+  document.getElementById('m-tit').textContent=c.nombre;
+  document.getElementById('m-sub').textContent='5 cápsulas · $5.000 · acceso de por vida';
+  const cont=document.getElementById('m-caps');
+  cont.innerHTML='';
+  const cols={ia:'cn-ia',excel:'cn-excel',ppt:'cn-ppt',dis:'cn-dis'};
+  c.capsulas.forEach((cap,i)=>{
+    const d=document.createElement('div');
+    d.className='cap-prev';
+    d.innerHTML=`
+      <div class="cap-prev-hdr" onclick="this.parentElement.classList.toggle('open')">
+        <span class="cap-nbadge ${cols[tipo]}">${i+1}</span>
+        <span class="cap-prev-tit">${cap.titulo}</span>
+        <span class="cap-prev-dur">${cap.duracion}</span>
+        <span class="chev">▼</span>
+      </div>
+      <div class="cap-prev-body">
+        <ul class="cap-temas">${cap.temas.map(t=>`<li>${t}</li>`).join('')}</ul>
+      </div>`;
+    cont.appendChild(d);
+  });
+  document.getElementById('modal-ov').classList.add('open');
+}
+function cerrarModal(e){if(e.target===document.getElementById('modal-ov'))document.getElementById('modal-ov').classList.remove('open');}
+
+// ACCESO
+function verificar(){
+  const val=document.getElementById('cod-input').value.trim().toUpperCase();
+  const cods=getCods();
+  const err=document.getElementById('err-msg');
+  if(cods[val]){
+    err.style.display='none';
+    const info=cods[val];
+    cods[val].usado=true;
+    saveCods(cods);
+    cargarCurso(info.curso);
+    showPage('curso-'+info.curso);
+  } else {
+    err.style.display='block';
+  }
+}
+document.getElementById('cod-input').addEventListener('keydown',e=>{if(e.key==='Enter')verificar();});
+
+// CARGAR CURSO
+function cargarCurso(tipo){
+  const c=CURSOS[tipo];
+  const prog=getProg(tipo);
+  const wrap=document.getElementById('view-'+tipo);
+  const hechas=Object.values(prog).filter(Boolean).length;
+  const total=c.capsulas.length;
+  const pct=Math.round((hechas/total)*100);
+  const cols={ia:'var(--azul)',excel:'var(--verde)',ppt:'var(--coral)',dis:'var(--purp)'};
+
+  wrap.innerHTML=`
+    <button class="btn-volver" onclick="volverHome()">← Volver al inicio</button>
+    <div class="curso-banner" style="background:${c.bgBanner}">
+      <div class="curso-banner-ico">${c.icon}</div>
+      <h2>${c.nombre}</h2>
+      <p>5 cápsulas de aprendizaje práctico — avanza a tu ritmo</p>
+    </div>
+    <div class="prog-wrap">
+      <span style="font-size:.82rem;color:var(--gris-m)">Progreso:</span>
+      <div class="prog-bar"><div class="prog-fill" id="pf-${tipo}" style="background:${cols[tipo]};width:${pct}%"></div></div>
+      <span class="prog-pct" id="pp-${tipo}" style="color:${cols[tipo]}">${pct}%</span>
+    </div>
+    <div class="caps-list" id="cl-${tipo}"></div>`;
+
+  const cl=document.getElementById('cl-'+tipo);
+  c.capsulas.forEach((cap,i)=>{
+    const hecho=!!prog[i];
+    const d=document.createElement('div');
+    d.className='cap-item';
+    d.innerHTML=`
+      <div class="cap-item-hdr" onclick="toggleCapItem(this,'${tipo}',${i})">
+        <div class="cap-check ${hecho?'done':''}" id="ck-${tipo}-${i}">✓</div>
+        <span class="cap-item-tit">Cápsula ${i+1}: ${cap.titulo}</span>
+        <span class="cap-item-dur">${cap.duracion} ▼</span>
+      </div>
+      <div class="cap-item-body ${i===0?'open':''}" id="cb-${tipo}-${i}">
+        <div class="contenido">${cap.contenido}</div>
+        <button class="btn-marcar" id="bm-${tipo}-${i}"
+          style="background:${hecho?'var(--verde-light)':'var(--fondo)'};color:${hecho?'var(--verde-dark)':'var(--gris-m)'}"
+          onclick="marcarHecho('${tipo}',${i},event)">
+          ${hecho?'✓ Completada — ¡bien hecho!':'Marcar como completada'}
+        </button>
+      </div>`;
+    cl.appendChild(d);
+  });
+}
+
+function toggleCapItem(hdr,tipo,i){
+  document.getElementById('cb-'+tipo+'-'+i).classList.toggle('open');
+}
+
+function marcarHecho(tipo,i,e){
+  e.stopPropagation();
+  const prog=getProg(tipo);
+  prog[i]=true;
+  saveProg(tipo,prog);
+  const ck=document.getElementById('ck-'+tipo+'-'+i);
+  ck.classList.add('done');
+  const bm=document.getElementById('bm-'+tipo+'-'+i);
+  bm.textContent='✓ Completada — ¡bien hecho!';
+  bm.style.background='var(--verde-light)';
+  bm.style.color='var(--verde-dark)';
+  // actualizar barra
+  const total=CURSOS[tipo].capsulas.length;
+  const hechas=Object.values(prog).filter(Boolean).length;
+  const pct=Math.round((hechas/total)*100);
+  const pf=document.getElementById('pf-'+tipo);
+  const pp=document.getElementById('pp-'+tipo);
+  if(pf){pf.style.width=pct+'%';}
+  if(pp){pp.textContent=pct+'%';}
+}
+
+// ADMIN
+const ADMIN_PW='cesfam2025';
+function loginAdmin(){
+  if(document.getElementById('adm-pass').value===ADMIN_PW){
+    document.getElementById('admin-login-box').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    renderCods();
+  } else {alert('Contraseña incorrecta.');}
+}
+function renderCods(){
+  const cods=getCods();
+  const lista=document.getElementById('cods-lista');
+  lista.innerHTML='';
+  const labels={ia:'IA',excel:'Excel',ppt:'PowerPoint',dis:'Diseño'};
+  Object.entries(cods).forEach(([code,info])=>{
+    const d=document.createElement('div');
+    d.className='cod-item';
+    d.innerHTML=`<span class="cod-code">${code}</span><span class="cod-tipo">${labels[info.curso]}</span><span class="${info.usado?'badge-usado':'badge-disp'}">${info.usado?'Usado':'Disponible'}</span>`;
+    lista.appendChild(d);
+  });
+}
+function genCod(tipo){
+  const prefixes={ia:'IA',excel:'EX',ppt:'PP',dis:'DS'};
+  const rand=Math.random().toString(36).substring(2,6).toUpperCase();
+  const yy=new Date().getFullYear().toString().slice(-2);
+  const nuevo=prefixes[tipo]+yy+rand;
+  const cods=getCods();
+  cods[nuevo]={curso:tipo,usado:false};
+  saveCods(cods);
+  renderCods();
+  document.getElementById('adm-msg').textContent=`Nuevo código generado: ${nuevo}`;
+}
+function exportCods(){
+  const cods=getCods();
+  const labels={ia:'IA - IA para la Salud',excel:'Excel - Excel CESFAM',ppt:'PPT - PowerPoint',dis:'DIS - Diseño Canva'};
+  const texto=Object.entries(cods).map(([c,i])=>`${c.padEnd(10)} | ${labels[i.curso].padEnd(28)} | ${i.usado?'USADO':'Disponible'}`).join('\n');
+  navigator.clipboard.writeText(texto).then(()=>{document.getElementById('adm-msg').textContent='✓ Lista copiada al portapapeles';});
+}
+</script>
+</body>
+</html>
